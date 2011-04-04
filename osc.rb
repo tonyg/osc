@@ -929,7 +929,12 @@ class Game < Gosu::Window
 		$music.play(1, 1, true)
 	end
 	def start
-		$levels = [Level.new("level1.txt", "level1stuff.txt", 0, 0), Level.new("level2.txt", "level2stuff.txt", -1, 0), Level.new("level3.txt", "level3stuff.txt", -2, 0), Level.new("level4.txt", "level4stuff.txt", -2, 1), Level.new("level5.txt", "level5stuff.txt", -3, 1), Level.new("level6.txt", "level6stuff.txt", -3, 0)]
+		$levels = [Level.new("level1.txt", "level1stuff.txt", 0, 0),
+                           Level.new("level2.txt", "level2stuff.txt", -1, 0),
+                           Level.new("level3.txt", "level3stuff.txt", -2, 0),
+                           Level.new("level4.txt", "level4stuff.txt", -2, 1),
+                           Level.new("level5.txt", "level5stuff.txt", -3, 1),
+                           Level.new("level6.txt", "level6stuff.txt", -3, 0)]
 		for l in $levels
 			l.link
 		end
