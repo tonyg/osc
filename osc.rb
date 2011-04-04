@@ -756,6 +756,14 @@ class Level
 	def right; @right; end
 	def up; @up; end
 	def down; @down; end
+
+        def fileContents(filename)
+          handle = File.open(filename)
+          contents = handle.read
+          handle.close
+          contents.gsub(/\s/, '').split(//)
+        end
+
 	def load
 		$fireball = 0
 		if $osc == nil
@@ -778,11 +786,8 @@ class Level
 			@lasty = 0
 		end
 		$everything = $blocks = $climbables = $enemies = []
-		@level = File.open(@map)
-		$charlist = []
-		repeat(File.size(@map)) { $charlist = $charlist + [@level.getc.chr] }
 		@charnum = 0
-		for c in $charlist
+		for c in fileContents(@map)
 			@blockx = @charnum * 50 + 800
 			@blocky = -1
 			until @blockx < 800
@@ -838,11 +843,8 @@ class Level
 	end
 	def loadextras
 		if @items == []
-			@level = File.open(@extras)
-			$charlist = []
-			repeat(File.size(@extras)) { $charlist = $charlist + [@level.getc.chr] }
 			@charnum = 0
-			for c in $charlist
+			for c in fileContents(@extras)
 				@blockx = @charnum * 50 + 800
 				@blocky = -1
 				until @blockx < 800
